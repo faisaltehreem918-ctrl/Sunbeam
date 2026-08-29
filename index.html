@@ -1,52 +1,100 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>The Perfect Day</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-<body>    
+<head>
+    <title>The Perfect Day</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
     <div class="container">
+
         <h1>The Perfect Day</h1>
+
         <h2>Your personalized nutrition planner</h2>
-        <p>Enter your information to discover your estimated daily nutrition needs. </p>
-        <form>
+
+        <p>
+            Enter your information to discover your estimated daily
+            nutrition needs.
+        </p>
+
+        <form id="nutritionForm">
+
             <label>Age</label>
-            <input type="number"
-placeholder="Enter your age">
+            <input
+                type="number"
+                id="age"
+                placeholder="Enter your age"
+                required
+            >
+
+            <label>Gender</label>
+            <select id="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+
             <label>Height (cm)</label>
-            <input type="number"
-placeholder="Enter your height">
+            <input
+                type="number"
+                id="height"
+                placeholder="Enter your height"
+                required
+            >
+
             <label>Weight (kg)</label>
-            <input type="number"
-placeholder="Enter your weight">
-            <h3>Exercise level </h3>
-            <select>
-                <option>1 - Heavy </option>
-                <option>2 - Light </option>
-                <option>3 - Moderate</option>
-                <option>4 - No exercise</option>
+            <input
+                type="number"
+                id="weight"
+                placeholder="Enter your weight"
+                required
+            >
+
+            <h3>Exercise level</h3>
+
+            <select id="exercise" required>
+                <option value="1">1 - Heavy</option>
+                <option value="2">2 - Light</option>
+                <option value="3">3 - Moderate</option>
+                <option value="4">4 - No exercise</option>
             </select>
-            <h3> Your Goal </h3>
-            <select>
-                <option>1- Loose weight</option>
-                <option>2 - Maintain </option>
-                <option>3 - Gain weight</option>
+
+            <h3>Your Goal</h3>
+
+            <select id="goal" required>
+                <option value="1">1 - Lose weight</option>
+                <option value="2">2 - Maintain</option>
+                <option value="3">3 - Gain weight</option>
             </select>
+
             <br>
-            <button type="submit"> Create My Perfect Day </button>
+
+            <button type="submit">
+                Create My Perfect Day
+            </button>
 
         </form>
+
         <div class="result">
-            <h2>Your Nutrition </h2>
-            <p> Calories: -- kcal</p>
-            <p> Protein: -- g</p>
-            <p> Carbohydrates: --g</p>
-            <p> Fat: -- g</p>
-            <p> Water: --litres</p>
+
+            <h2>Your Nutrition</h2>
+
+            <p>Calories: <span id="calories">--</span> kcal</p>
+
+            <p>Protein: <span id="protein">--</span> g</p>
+
+            <p>Carbohydrates: <span id="carbs">--</span> g</p>
+
+            <p>Fat: <span id="fat">--</span> g</p>
+
+            <p>Water: <span id="water">--</span> litres</p>
+
         </div>
+
     </div>
+
     <!-- Connect JavaScript -->
     <script src="script.js"></script>
 
 </body>
-</html> 
+</html>

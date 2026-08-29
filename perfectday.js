@@ -1,93 +1,135 @@
-console.log("Want to find out your nutritiously perfect meal for a day?");
-
-// In browser JavaScript, use prompt() to get input
-let age = parseInt(prompt("Enter your age:"));
-
-let gender = prompt("Enter gender (male/female):");
-
-let height = parseFloat(prompt("Enter your height in cm:"));
-
-let weight = parseFloat(prompt("Enter your weight in kg:"));
+// Get the form
+let form = document.getElementById("nutritionForm");
 
 
-// Exercise levels
-console.log("\nExercise levels");
-console.log("1. heavy");
-console.log("2. light");
-console.log("3. moderate");
-console.log("4. no exercise");
+// When the user clicks "Create My Perfect Day"
+form.addEventListener("submit", function(event) {
 
-let exercise = parseInt(prompt("Choose between 1 to 4:"));
+    // Prevent the page from refreshing
+    event.preventDefault();
 
 
-// Goals
-console.log("\nGoals levels");
-console.log("1. Loose weight");
-console.log("2. Maintain weight");
-console.log("3. Gain weight");
+    // Get information from the form
+    let age = Number(document.getElementById("age").value);
 
-let goal = parseInt(prompt("Choose between 1 to 3:"));
+    let gender = document.getElementById("gender").value;
 
+    let height = Number(document.getElementById("height").value);
 
-// Calculate BMR
-let bmr;
+    let weight = Number(document.getElementById("weight").value);
 
-if (gender.toLowerCase() === "male") {
-    bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
-} else {
-    bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
-}
+    let exercise = Number(document.getElementById("exercise").value);
+
+    let goal = Number(document.getElementById("goal").value);
 
 
-// Calculate calories according to exercise level
-let calories;
+    // --------------------------------
+    // Calculate BMR
+    // --------------------------------
 
-if (exercise === 1) {
-    calories = bmr * 1.2;
-} 
-else if (exercise === 2) {
-    calories = bmr * 1.375;
-} 
-else if (exercise === 3) {
-    calories = bmr * 1.55;
-} 
-else if (exercise === 4) {
-    calories = bmr * 1.725;
-} 
-else {
-    console.log("Invalid activity level.");
-    calories = bmr;
-}
+    let bmr;
 
+    if (gender === "male") {
 
-// Adjust calories according to goal
-if (goal === 1) {
-    calories -= 300;
-} 
-else if (goal === 3) {
-    calories += 300;
-}
+        bmr =
+            (10 * weight) +
+            (6.25 * height) -
+            (5 * age) +
+            5;
+
+    }
+    else {
+
+        bmr =
+            (10 * weight) +
+            (6.25 * height) -
+            (5 * age) -
+            161;
+    }
 
 
-// Calculate protein, fat, carbohydrates and water
-let protein = weight * 1.6;
+    // --------------------------------
+    // Calculate calories
+    // --------------------------------
 
-let fat = (calories * 0.25) / 9;
-
-let carbs = (calories - (protein * 4) - (fat * 9)) / 4;
-
-let water = weight * 0.035;
+    let calories;
 
 
-// Output
-console.log("\n===================================");
-console.log("🍲 YOUR PERFECT DAY");
-console.log("===================================");
+    if (exercise === 1) {
 
-console.log(`Estimated Calories: ${calories.toFixed(0)} kcal`);
-console.log(`Protein: ${protein.toFixed(0)} g`);
-console.log(`Carbohydrates: ${carbs.toFixed(0)} g`);
-console.log(`Fat: ${fat.toFixed(0)} g`);
-console.log(`Water: ${water.toFixed(1)} litres`);
+        calories = bmr * 1.2;
 
-console.log("\n✨ Remember: these are estimates, not medical advice.");
+    }
+
+    else if (exercise === 2) {
+
+        calories = bmr * 1.375;
+
+    }
+
+    else if (exercise === 3) {
+
+        calories = bmr * 1.55;
+
+    }
+
+    else if (exercise === 4) {
+
+        calories = bmr * 1.725;
+
+    }
+
+
+    // --------------------------------
+    // Adjust calories based on goal
+    // --------------------------------
+
+    if (goal === 1) {
+
+        // Lose weight
+        calories = calories - 300;
+
+    }
+
+    else if (goal === 3) {
+
+        // Gain weight
+        calories = calories + 300;
+
+    }
+
+
+    // --------------------------------
+    // Calculate nutrition
+    // --------------------------------
+
+    let protein = weight * 1.6;
+
+    let fat = (calories * 0.25) / 9;
+
+    let carbs =
+        (calories - (protein * 4) - (fat * 9)) / 4;
+
+    let water = weight * 0.035;
+
+
+    // --------------------------------
+    // Display results
+    // --------------------------------
+
+    document.getElementById("calories").textContent =
+        calories.toFixed(0);
+
+    document.getElementById("protein").textContent =
+        protein.toFixed(0);
+
+    document.getElementById("carbs").textContent =
+        carbs.toFixed(0);
+
+    document.getElementById("fat").textContent =
+        fat.toFixed(0);
+
+    document.getElementById("water").textContent =
+        water.toFixed(1);
+
+});
